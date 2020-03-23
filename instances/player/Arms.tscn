@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/player_hand_base.png" type="Texture" id=1]
+[ext_resource path="res://instances/player/Arms.gd" type="Script" id=2]
+
+[node name="Arms" type="Sprite"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+offset = Vector2( 15, 0 )
+script = ExtResource( 2 )
