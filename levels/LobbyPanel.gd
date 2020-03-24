@@ -15,12 +15,14 @@ var my_info = {
 }
 
 func _ready():
+	# Here you have all callback based on network signal (reroute to internal function)
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	get_tree().connect("connected_to_server", self, "_connected_ok")
 	get_tree().connect("connection_failed", self, "_connected_fail")
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 
+# Player connected function
 func _player_connected(_id):
 	print("Player enter in lobby id : "+str(_id))
 	rpc_id(_id, "register_player", my_info)
@@ -58,6 +60,7 @@ func _on_JoinServerBtn_pressed():
 	get_tree().set_network_peer(host)
 	lobby_message.set_text("Connecting to server : "+ip)
 	
+# Global function for all client connected (register new user)
 remote func register_player(info):
 	info['name'] = lobby_player_name.get_text()
 	var id = get_tree().get_rpc_sender_id()
