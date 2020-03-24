@@ -15,10 +15,10 @@ __meta__ = {
 }
 
 [node name="LobbyPanel" type="Panel" parent="."]
-margin_left = 299.475
-margin_top = 176.937
-margin_right = 711.475
-margin_bottom = 420.937
+margin_left = 299.0
+margin_top = 177.0
+margin_right = 711.0
+margin_bottom = 511.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -27,32 +27,64 @@ __meta__ = {
 [node name="LobbyMessage" type="Label" parent="LobbyPanel"]
 margin_left = 45.0
 margin_top = 13.0
-margin_right = 373.0
-margin_bottom = 68.0
+margin_right = 365.0
+margin_bottom = 56.0
 custom_fonts/font = SubResource( 1 )
 text = "Lobby message...."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LobbyMessage2" type="Label" parent="LobbyPanel"]
+margin_left = 45.0
+margin_top = 56.0
+margin_right = 365.0
+margin_bottom = 99.0
+custom_fonts/font = SubResource( 1 )
+text = "ip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LobbyMessage3" type="Label" parent="LobbyPanel"]
+margin_left = 43.7076
+margin_top = 159.388
+margin_right = 363.708
+margin_bottom = 202.388
+custom_fonts/font = SubResource( 1 )
+text = "Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="LobbyAddress" type="LineEdit" parent="LobbyPanel"]
 margin_left = 72.7076
-margin_top = 87.5548
+margin_top = 105.648
 margin_right = 339.708
-margin_bottom = 124.555
+margin_bottom = 142.648
+text = "127.0.0.1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CreateServerBtn" type="Button" parent="LobbyPanel"]
-margin_left = 51.4618
-margin_top = 163.631
-margin_right = 182.462
-margin_bottom = 218.631
+margin_left = 48.8771
+margin_top = 257.973
+margin_right = 179.877
+margin_bottom = 312.973
 text = "Create Server"
 
 [node name="JoinServerBtn" type="Button" parent="LobbyPanel"]
-margin_left = 228.514
-margin_top = 163.631
-margin_right = 359.514
-margin_bottom = 218.631
+margin_left = 225.93
+margin_top = 257.973
+margin_right = 356.93
+margin_bottom = 312.973
 text = "Join Server"
+
+[node name="LobbyPlayerName" type="LineEdit" parent="LobbyPanel"]
+margin_left = 76.4153
+margin_top = 192.169
+margin_right = 328.415
+margin_bottom = 233.169
 [connection signal="pressed" from="LobbyPanel/CreateServerBtn" to="LobbyPanel" method="_on_CreateServerBtn_pressed"]
 [connection signal="pressed" from="LobbyPanel/JoinServerBtn" to="LobbyPanel" method="_on_JoinServerBtn_pressed"]

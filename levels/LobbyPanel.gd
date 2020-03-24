@@ -6,6 +6,13 @@ onready var lobby_message = $LobbyMessage
 onready var lobby_address = $LobbyAddress
 onready var lobby_server_btn = $CreateServerBtn
 onready var lobby_join_btn = $JoinServerBtn
+onready var lobby_player_name = $LobbyPlayerName
+
+var player_info = {}
+
+var my_info = {
+	'name' : "test_player"
+}
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -15,7 +22,8 @@ func _ready():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 
 func _player_connected(_id):
-	print("Player detected id : "+str(_id))
+	print("Player enter in lobby id : "+str(_id))
+	rpc_id(_id, "register_player", my_info)
 
 func _player_disconnected(_id):
 	print("Player disconected id : "+str(_id))
@@ -50,3 +58,8 @@ func _on_JoinServerBtn_pressed():
 	get_tree().set_network_peer(host)
 	lobby_message.set_text("Connecting to server : "+ip)
 	
+remote func register_player(info):
+	info['name'] = lobby_player_name.get_text()
+	var id = get_tree().get_rpc_sender_id()
+	player_info[id] = info
+	print(player_info)
