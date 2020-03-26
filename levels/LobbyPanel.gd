@@ -26,6 +26,8 @@ func _ready():
 func _player_connected(_id):
 	print("Player enter in lobby id : "+str(_id))
 	rpc_id(_id, "register_player", my_info)
+	rpc("pre_configure_game")
+	
 
 func _player_disconnected(_id):
 	print("Player disconected id : "+str(_id))
@@ -66,3 +68,19 @@ remote func register_player(info):
 	var id = get_tree().get_rpc_sender_id()
 	player_info[id] = info
 	print(player_info)
+
+remote func pre_configure_game():
+	var selfPeerID = get_tree().get_network_unique_id()
+	
+	# Load world
+	var word = load("res://levels/Level1.tscn").instance()
+	
+	# Load player
+	var srv_player = preload("res://instances/player/Player.tscn").instance()
+	srv_player.set_name(str(selfPeerID))
+	srv_player.set_network_master(selfPeerID)
+	word.get_node("spawn01").add_child(srv_player)
+	
+	get_tree().get_root().add_child(word)
+	hide()
+	
